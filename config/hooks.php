@@ -11,19 +11,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/hooks.html
 |
 */
+//add Global variable
 $hook['post_controller_constructor'][] = [
 	'class' 	=> 'TwigHook',
 	'function'	=> 'addGlobals',
 	'filename'	=> 'TwigHook.php',
 	'filepath'	=> 'hooks',
 	'params'	=> [
-		'user'	=> [
-			'value' 	=> 'user',
-			'is_session'=> TRUE,
-		],
-		'error' => [
-			'value'		=> 'errors',
-			'is_session'=> FALSE,
-		],
 	],
+];
+
+//add Flash message
+$hook['post_controller_constructor'][] = [
+	'class' 	=> 'TwigHook',
+	'function'	=> 'addFlash',
+	'filename'	=> 'TwigHook.php',
+	'filepath'	=> 'hooks',
+	'params'	=> [],
 ];

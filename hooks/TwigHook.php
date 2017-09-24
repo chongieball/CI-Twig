@@ -14,7 +14,7 @@ class TwigHook
 		$this->ci =& get_instance();
 	}
 
-	public function addGlobals(array $params)
+	public function addGlobals(array $params = [])
 	{
 		foreach ($params as $globalKey => $value) {
 			if ($value['is_session'] == true) {
@@ -24,5 +24,11 @@ class TwigHook
 			}
 			$this->ci->twig->addGlobal($globalKey, $globalValue);
 		}
+	}
+
+	public function addFlash()
+	{
+		$flash = $this->ci->session->flashdata();
+		$this->ci->twig->addGlobal('flash', $flash);
 	}	
 }
